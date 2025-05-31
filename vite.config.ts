@@ -1,4 +1,3 @@
-
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 // Fix: Import fileURLToPath to help resolve __dirname in ESM
@@ -11,6 +10,7 @@ export default defineConfig(({ mode }) => {
     const __dirname = path.dirname(__filename);
 
     return {
+      base: "/vocabulary/",
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
