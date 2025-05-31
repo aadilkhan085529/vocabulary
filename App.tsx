@@ -1,4 +1,3 @@
-
 // Remove problematic type reference as import.meta.env is not used directly in this file
 // and process.env is handled by Vite's define plugin.
 
@@ -179,7 +178,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     setIsLoadingManifest(true);
-    const manifestPath = `${window.location.origin}/database/file-manifest.json`;
+    const manifestPath = `${import.meta.env.BASE_URL}database/file-manifest.json`;
 
     fetch(manifestPath)
       .then(response => {
@@ -247,7 +246,7 @@ const App: React.FC = () => {
     if (file.isLocal && file.arrayBuffer) {
       processXLSXData(file.arrayBuffer, file.name.replace(' (Uploaded)', ''));
     } else {
-      const filePath = `${window.location.origin}/${file.path}`; 
+      const filePath = `${import.meta.env.BASE_URL}${file.path}`; 
       try {
         const response = await fetch(filePath);
         if (!response.ok) {
